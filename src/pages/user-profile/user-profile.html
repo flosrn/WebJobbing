@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Profil de {{profile.firstName}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <!-------------// Photo de couverture //-------------->
+  <div class="cover">
+    <img src="{{profile.cover}}" id="profile-bg" *ngIf="this.profile.cover">
+  </div>
+  
+  <div id="content">
+    <!-------------// Info Profil //-------------->         
+    <div id="profile-info" padding>
+      <img src="{{profile.avatar}}" id="profile-image">
+      <h3 id="profile-name">{{profile.firstName}} {{profile.lastName}}</h3>
+      <div class="statut">
+        <p class="statut__line" *ngIf="this.profile.jobberStatut === true">Profil Jobbeur<ion-icon class="iconBadge" color="orangé" name="ios-ribbon" *ngIf="this.profile.jobberStatut === true"></ion-icon></p> 
+        <p class="statut__line" *ngIf="this.profile.jobberStatut === false">Profil utilisateur</p>
+      </div>   
+      <p *ngIf="this.profile.jobberStatut === true" class="job">{{profile.job}}</p> 
+      <p *ngIf="this.profile.jobberStatut === true && this.profile.job && this.profile.location"class="dot">&bull;</p>
+      <p class="location">{{profile.location}}</p> 
+    </div>   
+    
+    <hr/>
+    
+    <p *ngIf="profile && this.profile.date" class="date">Membre depuis le {{profile.date | date:'MM/dd/yy'}}</p> 
+    
+    <!-- Description -->
+    <div class="textDescription" *ngIf="this.profile.description && this.profile.jobberStatut === true"> 
+      <p class="profile-description">{{profile.description}}</p>
+    </div>   
+    
+    <!-------------// Infos //-------------->
+    <div>
+      <div class="numbers">
+        <ion-row class="profile-numbers">
+          <ion-col col-4>   
+            <div>
+              <p>Annonces postées</p>
+              <span *ngIf="this.profile.requestPost">{{profile.requestPost}}</span>
+              <span *ngIf="!this.profile.requestPost">0</span> 
+            </div>
+          </ion-col>
+          <ion-col col-4>
+            <div class="zou">
+              <p>Missions réalisées</p> 
+              <span *ngIf="this.profile.workDone">{{profile.workDone}}</span>
+              <span *ngIf="!this.profile.workDone">0</span> 
+            </div>
+          </ion-col>
+          <ion-col col-4> 
+            <div>  
+              <p>Commentaires postés</p>
+              <span *ngIf="this.profile.commentPost">{{profile.commentPost}}</span>
+              <span *ngIf="!this.profile.commentPost">0</span>
+            </div>  
+          </ion-col>  
+        </ion-row>
+      </div> 
+    </div> 
+  <!-- <ion-list *ngIf="this.profile.knowledges && this.showProfileUser">
+    Compétences : {{this.profile.knowledges}}
+  </ion-list> -->
+</div>
+
+</ion-content>
+

@@ -1,0 +1,50 @@
+<form #loginForm="ngForm" novalidate>
+  <div padding class="center">  
+    <ion-row>
+      <ion-col>
+        <img class="logo" src="./assets/img/logo2.png" />
+      </ion-col>
+    </ion-row>
+    
+    <ion-row *ngIf="!userProfile">
+      <ion-col>
+        <ion-list inset class="no-border">
+          <ion-item styles="font-size:5px;">  
+            <ion-label><ion-icon name="mail"></ion-icon></ion-label>
+            <ion-input clearInput [(ngModel)]="account.email" placeholder="Adresse mail" type="email" name="email" #email="ngModel" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label><ion-icon name="ios-key"></ion-icon></ion-label>
+            <ion-input clearInput [(ngModel)]="account.password" placeholder="Mot de passe" type="{{type}}" name="password" #password="ngModel" required></ion-input>
+            <button *ngIf="!showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> <ion-icon name="eye"></ion-icon></button>
+            <button *ngIf="showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> <ion-icon name="eye-off"></ion-icon></button>
+          </ion-item>
+        </ion-list>
+        <div>
+          <button ion-button class="back" color="danger" (click)="back()"><ion-icon name="ios-arrow-back"></ion-icon></button>
+          <button ion-button class="login" color="bleu" (click)="login()">Connexion</button>
+        </div>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row *ngIf="userProfile" class="connect"> 
+      <ion-col>
+        <h2>Rebonjour {{userProfile.firstName}}</h2>
+        <img src="{{userProfile.avatar}}" class="avatar">
+      </ion-col>
+    </ion-row>
+    <div *ngIf="userProfile" class="connect__button">
+      <button ion-button class="back" color="danger" (click)="back()"><ion-icon name="ios-arrow-back"></ion-icon></button>
+      <button ion-button class="login" color="bleu" (click)="login()">Entrer</button>
+    </div>
+    
+    <ion-row> 
+      <ion-col> 
+        <div>
+          <span (click)="navigateToRegisterPage()" *ngIf="!userProfile">Ou créer un nouveau compte</span>
+          <span (click)="logOut()" *ngIf="userProfile">Se déconnecter de ce compte</span>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+</form>

@@ -1,0 +1,150 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Mon Profil</ion-title>
+    <ion-buttons end>
+      <button ion-button *ngIf="!this.showProfileUser" (click)="onShowProfile()"><ion-icon name="ios-eye"></ion-icon></button>
+      <button ion-button *ngIf="this.showProfileUser" (click)="onShowProfile()" color="orangé"><ion-icon name="ios-eye-off"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <!-------------// Photo de couverture //-------------->
+  <div class="cover" *ngIf="userProfile">
+    <img src="{{userProfile.cover}}" id="profile-bg" *ngIf="this.userProfile.cover" (click)="alertCover()">
+  </div>
+  
+  <div id="content" *ngIf="userProfile">
+    <!-------------// Info Profil //-------------->         
+    <div id="profile-info" padding>
+      <img src="{{userProfile.avatar}}" id="profile-image" (click)="choosePhoto()">
+      <h3 id="profile-name">{{userProfile.firstName}} {{userProfile.lastName}}</h3>
+      <div class="statut">
+        <p class="statut__line" *ngIf="this.userProfile.jobberStatut === true">Profil Jobbeur<ion-icon class="iconBadge" color="orangé" name="ios-ribbon" *ngIf="this.userProfile.jobberStatut === true"></ion-icon></p> 
+        <p class="statut__line" *ngIf="this.userProfile.jobberStatut === false">Profil utilisateur</p>
+      </div>   
+      <p *ngIf="this.userProfile.jobberStatut === true" class="job">{{userProfile.job}}</p> 
+      <p *ngIf="this.userProfile.jobberStatut === true && this.userProfile.job && this.userProfile.location"class="dot">&bull;</p>
+      <p class="location">{{userProfile.location}}</p> 
+    </div>   
+    
+    <hr/>
+    
+    <p *ngIf="userProfile && this.userProfile.date" class="date">Membre depuis le {{userProfile.date | date:'MM/dd/yy'}}</p> 
+    
+    <!-------------// Infos //-------------->
+    <div class="info2" *ngIf="!showProfileUser">
+      <!-- Infos perso -->
+      <ion-list no-border>
+        <ion-list-header>  
+          Informations personnelles
+        </ion-list-header>
+        <ion-item (click)="alertEmail()">
+          <ion-icon name='ios-mail' item-start></ion-icon>
+          <ion-label>Mail</ion-label>
+          <ion-note item-end *ngIf="this.userProfile.email">{{this.userProfile.email}}</ion-note>
+        </ion-item>
+        <ion-item (click)="alertLastName()">
+          <ion-icon name='ios-person' item-start></ion-icon>
+          <ion-label>Nom</ion-label>
+          <ion-note item-end *ngIf="this.userProfile.lastName">{{this.userProfile.lastName}}</ion-note>
+        </ion-item>
+        <ion-item (click)="alertFirstName()">
+          <ion-icon name='ios-person-outline' item-start></ion-icon>
+          <ion-label>Prénom</ion-label>
+          <ion-note item-end *ngIf="this.userProfile.firstName">{{this.userProfile.firstName}}</ion-note>
+        </ion-item>
+        <ion-item (click)="alertCity()">
+          <ion-icon name='ios-home' item-start></ion-icon>
+          <ion-label>Ville</ion-label>
+          <ion-note item-end *ngIf="this.userProfile.location">{{this.userProfile.location}}</ion-note>
+        </ion-item>
+      </ion-list>
+      <!-- Infos jobbeur -->
+      <ion-list no-border *ngIf="this.userProfile.jobberStatut === true">
+        <ion-list-header>
+          Informations jobbeur
+        </ion-list-header>
+        <ion-item (click)="alertJob()">
+          <ion-icon name='ios-briefcase' item-start></ion-icon>
+          <ion-label>Emploi</ion-label>
+          <ion-note item-end *ngIf="this.userProfile.job">{{this.userProfile.job}}</ion-note>
+        </ion-item>
+        <ion-item (click)="alertKnowledges()">
+          <ion-icon name='logo-buffer' item-start></ion-icon>
+          <ion-label>Compétences</ion-label>
+          <ion-note item-end *ngIf="this.userProfile.knowledgeNumber">{{this.userProfile.knowledgeNumber}}</ion-note>
+        </ion-item>
+        <ion-item (click)="alertDescription()">
+          <ion-icon name='ios-book' item-start></ion-icon>
+          <ion-label>Description</ion-label>
+          <ion-note item-end *ngIf="this.userProfile.description">{{this.userProfile.description.slice(0,15)}}</ion-note>
+        </ion-item>
+      </ion-list>
+    </div>
+    <!-- Description -->
+    <div *ngIf="!this.showProfileUser" class="textDescription" (click)="alertDescription()"> 
+      <p class="profile-description" *ngIf="this.userProfile.description && this.userProfile.jobberStatut === true">{{userProfile.description}}</p>
+      <p class="profile-description" *ngIf="!this.userProfile.description && this.userProfile.jobberStatut === true">Vous pouvez ajouter une courte description pour parler de vous et de vos compétences afin que les utilisateurs vous connaissent un peu mieux</p>  
+    </div>  
+    
+    <!-------------// Accordéon //-------------->
+    <div *ngIf="!this.showProfileUser" class="accordeon">  
+      <ion-list class="accordion-list">
+        <!-- First Level -->
+        <ion-list-header no-lines no-padding>
+          <!-- Toggle Button -->
+          <button ion-item (click)="toggleSection()" detail-none>
+            <ion-icon item-left name="ios-arrow-forward" *ngIf="!showText"></ion-icon>
+            <ion-icon item-left name="ios-arrow-down" *ngIf="showText"></ion-icon>
+            Info
+          </button>
+        </ion-list-header>
+        <ion-item *ngIf="showText" text-wrap>
+          <p>Pour modifier les informations de votre profil, cliquez simplement sur l'élément que vous souhaitez modifier (ça marche aussi pour la photo de profil et de couverture !)<br \><br \>Pour visualiser votre profil tel que les autres utilisateurs le voient cliquez sur <ion-icon name="ios-eye"></ion-icon> en haut de la page.</p>
+        </ion-item>
+      </ion-list>
+    </div>
+    
+    <!-------------// Infos //-------------->
+    <div>
+      <div class="numbers" *ngIf="showProfileUser">
+        <ion-row class="profile-numbers">
+          <ion-col col-4>   
+            <div>
+              <p>Annonces postées</p>
+              <span *ngIf="this.userProfile.requestPost">{{userProfile.requestPost}}</span>
+              <span *ngIf="!this.userProfile.requestPost">0</span> 
+            </div>
+          </ion-col>
+          <ion-col col-4>
+            <div class="zou">
+              <p>Missions réalisées</p> 
+              <span *ngIf="this.userProfile.workDone">{{userProfile.workDone}}</span>
+              <span *ngIf="!this.userProfile.workDone">0</span> 
+            </div>
+          </ion-col>
+          <ion-col col-4> 
+            <div>  
+              <p>Commentaires postés</p>
+              <span *ngIf="this.userProfile.commentPost">{{userProfile.commentPost}}</span>
+              <span *ngIf="!this.userProfile.commentPost">0</span>
+            </div>  
+          </ion-col>  
+        </ion-row>
+      </div> 
+    </div>
+    
+    <div class="descriptionContainer" *ngIf="this.showProfileUser">  
+      <div class="yo">  
+        <p class="profile-description" *ngIf="this.userProfile.description && this.userProfile.jobberStatut === true">{{userProfile.description}}</p>
+        <p class="profile-description" *ngIf="!this.userProfile.description && this.showEdit && this.userProfile.jobberStatut === true">Vous pouvez ajouter une courte description pour parler de vous et de vos compétences afin que les utilisateurs vous connaissent un peu mieux</p> 
+      </div>   
+    </div>  
+    <!-- <ion-list *ngIf="this.userProfile.knowledges && this.showProfileUser">
+      Compétences : {{this.userProfile.knowledges}}
+    </ion-list> -->
+  </div>
+  
+</ion-content>
+

@@ -1,0 +1,75 @@
+<ion-content>
+  <div class="bg-logo">
+    <img class="logo" src="./assets/img/logo.png">
+  </div>
+  
+  <ion-slides autoplay="5000" speed="1000" pager (ionSlideDidChange)="slideChanged()">
+    <div classs="swiper-pagination">
+      
+      <!-- PREMIERE SLIDE -->
+      <ion-slide>
+        <i class="fa fa-handshake-o" style="font-size:130px; color: #2b2b2b" aria-hidden="true"></i>
+        <p class="text" style=" color: #2b2b2b; font-size:14px;">Web-Jobbing est la première application d'entraide numérique entre voisins </p>
+      </ion-slide>
+    </div>
+    
+    <!-- DEUXIEME SLIDE -->
+    <ion-slide>
+      <div class="icons-conteneur">
+        <img class="icons" src="./assets/img/icons.png" alt="">
+      </div>
+      <div class="textIcons">
+        <h4 class="text" style=" color: #2b2b2b; font-size:17px; font-family: pacifico;">Un problème avec un appareil ?</h4>
+        <p class="text" style=" color: #2b2b2b; font-size:13px">PC, laptop, smartphone, TV... Trouvez la bonne personne pour vous aider.</p> 
+      </div> 
+      
+    </ion-slide>
+    
+    <!-- TROISIEME SLIDE -->
+    <ion-slide>
+      <i class="fa fa-briefcase " style="font-size:130px; color: #2b2b2b;" aria-hidden="true"></i>
+      <h4 class="text" style=" color: #2b2b2b; font-size:17px; font-family: pacifico;">Besoin d'une formation ?</h4>
+      <p class="text" style=" color: #2b2b2b; font-size:13px">Vous pouvez vous former sur un nouveau logiciel ou un nouveau langage grâce à nos jobbeurs compétents</p>
+    </ion-slide>
+    
+    <!-- QUATRIEME SLIDE -->
+    <ion-slide>
+      <div class="howWork">
+        <h4 class="text2" style="color: #2b2b2b; font-family: pacifico;">Comment ça marche ?</h4>
+        <ion-grid>
+          <ion-row>
+            
+            <!-- Première colonne -->
+            <ion-col col-4>
+              <h5>Postez votre besoin</h5>
+              <img src="./assets/icon/file.png" alt="" style="position: relative;">
+              <p class="text" style="  color: #2b2b2b; font-size:13px">Décrivez votre besoin et postez</p>
+            </ion-col>
+            
+            <!-- Deuxième colonne -->
+            <ion-col col-4>
+              <h5>Choisissez votre jobbeur</h5>
+              <img src="./assets/icon/user.png" alt="" style="position: relative;">
+              <p class="text" style="  color: #2b2b2b; font-size:13px">Les jobbeurs disponibles vous proposent leurs services</p>
+            </ion-col>
+            
+            <!-- Troisième colonne -->
+            <ion-col col-4>
+              <h5>Réglez et notez le jobbeur</h5>
+              <img src="./assets/icon/user2.png" alt="" style="position: relative;">
+              <p class="text" style="  color: #2b2b2b; font-size:13px">Evaluez et réglez votre jobbeur une fois le job terminé</p>
+            </ion-col>
+            
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ion-slide>
+  </ion-slides>
+  
+  <!-- Boutons -->
+  <div id="button">
+    <button ion-button (click)="navigateToRegisterPage()" color="orangé">S'inscrire </button>
+    <button ion-button (click)="navigateToLoginPage()" color="bleu">Se connecter</button>
+  </div>
+  
+</ion-content>

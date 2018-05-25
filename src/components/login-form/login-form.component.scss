@@ -1,0 +1,75 @@
+app-login-form {
+  
+  .logo {
+    width: 100%;
+    height: auto;
+    max-width: 18em;
+    margin: 0 auto;
+    padding-bottom: 50px;
+  }
+  .no-border {
+    border-bottom: 0 !important;
+    box-shadow: none !important;
+  }
+  ion-row {
+    align-items: center;
+    text-align: center;
+  }
+  @media only screen and (min-width: 768px) {
+    ion-col.col {
+      margin: 0 auto;
+      max-width: 40%;
+    }
+  }
+
+  .center {
+    text-align: center;
+  }
+  
+  ion-item {
+    // border-radius: 30px !important;
+    padding-left: 10px !important;
+    margin-bottom: 10px;
+    background-color: #f6f6f6;
+    opacity: 0.7;
+    font-size: 0.9em;
+  }
+  ion-list {
+    margin: 0;
+  }
+  .login {
+    width: 70%;
+    border-radius: 5px;
+    font-size: 0.9em;
+  }
+  
+  .back {
+    border-radius: 5px;
+    font-size: 0.9em;
+  }
+  
+  .text-input::-moz-placeholder {
+    font-size: 13px;
+  }
+
+  .connect {
+    h2 {
+      font-size: 26px;
+      font-family: pacifico;
+      color: color($colors, dark, base);
+    } 
+  }
+
+  .connect__button {
+    margin-top: 100px;
+    text-align: center;
+  }
+
+  .avatar {
+    margin-top: 20px;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    box-shadow: 0px 18px 200px;
+  }
+}

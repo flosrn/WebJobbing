@@ -1,0 +1,109 @@
+page-request {
+
+
+  .h2 {
+    font-size: 14px; 
+  }
+  
+  .avatar {
+    width: 50px;
+    height: 50px; 
+    border-radius: 100%;  
+    box-shadow: 0 3px 5px gray;
+  }
+  
+  // Gère la limite du texte et les 3 '...'
+  .description {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    font-size: 12px;
+  }
+  
+  p.block {
+    width: 300px;
+  }
+  
+  .userContent {
+    text-align: center; 
+  }
+
+  .name {
+    color: black;
+    font-size: 11px;
+  }
+
+  .p2 {
+    font-size : 10px;
+    color: rgb(0, 0, 0);
+  }
+
+  .price {
+    font-size: 10px;
+    color: color($colors, orangé, base);
+  }
+
+  .pos {
+    font-size: 10px;
+    color: color($colors, bleu, base);
+  }
+  
+}
+
+// Fenètre du modal request
+ion-modal.inset-modal {
+  // transparent black background overlay
+  background-color: rgba(0, 0, 0, 0.568) !important;
+  transition: opacity .25s ease-in-out;
+  // padding:  10% 20px; 
+
+  position: absolute;
+  z-index: $z-index-overlay;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  contain: strict;
+  .modal-wrapper {
+    &,
+    .ion-page,
+    .ion-page .content,
+    .ion-page .content .scroll-content {
+      contain: content;
+      position: relative;
+      top: auto;
+      left: auto;
+      padding: 0px;
+
+    }
+
+    z-index: $z-index-overlay-wrapper;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    // min-width: $alert-min-width;
+    // min-width: 100px;
+    // max-height: $alert-max-height;
+    max-height: 580px;
+    margin-bottom: 50px;
+    opacity: 0;
+    // height: 800px; 
+    // max-width: $alert-md-max-width;
+    max-width: 500px;
+    border-radius: $alert-md-border-radius;
+    background-color: $alert-md-background-color;
+    box-shadow: $alert-md-box-shadow;
+    border-radius: 25px;
+    padding:5px;
+
+    .ion-page .content {
+      background-color: color($colors, light);
+      
+    }
+  }
+}
+
+ 

@@ -1,0 +1,1 @@
+{"__symbolic":"module","version":1,"metadata":{},"exports":[{"from":"./ionic2-rating.module","export":["Ionic2RatingModule"]},{"from":"./ionic2-rating","export":["Ionic2Rating"]}]}

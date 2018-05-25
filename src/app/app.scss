@@ -1,0 +1,61 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+
+@font-face {
+	font-family: Anonymous;
+	src: url('../assets/fonts/anonymous_pro.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: Volkorn;
+	src: url('../assets/fonts/volkorn.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: open-sans;
+	src: url('../assets/fonts/opensans.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: pacifico;
+	src: url('../assets/fonts/pacifico.woff2') format('woff2');
+}
+	
+@font-face {
+	font-family: amaranth;
+	src: url('../assets/fonts/amaranth.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: baloo;
+	src: url('../assets/fonts/baloo.woff2') format('woff2');
+}
+*{
+	//font-family: Anonymous;
+}
+
+
+.alertInput {
+	button.alert-button:nth-child(1) {
+		color: color($colors, orangé, base);
+	}
+	button.alert-button:nth-child(2) {
+		font-weight: bold;
+		color: color($colors, bleu, base);
+	}
+}

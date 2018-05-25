@@ -1,0 +1,355 @@
+page-request-modal {
+  
+  
+  // ***************** Header **************** //
+  .header {
+    // background-color: rgb(194, 194, 194);
+    background-color: color($colors, orangé, base);
+    color: color($colors, light, base);
+  }
+  
+  .button1, .button2, .button3, .button4 {
+		float: left;
+		width: 33%;
+		text-align: center;	
+	}
+	
+	.iconActive {
+		position: absolute;
+	} 
+	
+	#iconActive {
+		position: absolute;
+		z-index: 100;
+	}
+  
+  // -------- Gauche ----------//
+  .col1 {
+    text-align: center;
+    h4 {
+      font-family:baloo; 
+      font-size:18px
+    }
+  }
+  
+  .align-center {
+    text-align: center;
+  }
+  
+  .info {
+    font-size: 11px;
+  }
+  .category {
+    font-size: 12px;
+    padding-top: 10px;
+    font-family:baloo;
+  }
+  
+  // -------- Droite ----------//
+  .col2 {
+    text-align: right;
+  }
+  
+  .userContent {
+    padding-top: 15%;
+    text-align: center;
+    font-size: 14px;
+  }
+  
+  .profilePic {
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+  }
+  
+  .name {
+    font-size: 13px;
+  }
+  
+  // ***************** Content **************** //
+  
+  
+  // -------- Slide 1 ----------//
+  .content {
+    text-align: center;
+    // width: 380px;
+  }
+  
+  .scroll1 {
+    height: 210px; 
+    margin-bottom: 200px;
+   
+  }
+  
+  .tamere {
+    // height: 210px; 
+    // margin-bottom: 100px;
+    ion-item {
+      background-color: color($colors, light, base);
+    } 
+  }
+  
+  .descriptionText {
+    font-size: 13px;
+  }
+  
+  .photoContainer {
+    text-align: center;
+  }
+  
+  .photo {
+    height: 100px;
+    width: 150px;
+  }
+  
+  .align-center {
+    text-align: center; 
+  }
+  
+  .offer {
+    width: 220px;
+  }
+  
+  .iconImage {
+    padding-right: 10px;
+  }
+  
+  .photoRow {
+    padding-top: 10px;
+    font-size: 10px;
+  }
+  
+  .back {
+    width: 60px;
+  }
+  
+  .buttonPhoto {
+    width: 150px;
+  }
+  
+  .s {
+    padding-right: 5px;
+  }
+  
+  .footer1 {
+    background-color: color($colors, light, base);
+  }
+  
+  // -------- Slide 2 ----------//
+  
+  .scroll2 {
+    height: 250px;
+    margin-bottom: 150px;
+  }
+  
+  .tamere2 {
+    height: 245px;
+  }
+  
+  .tamere3 {
+    height: 240px;
+    // padding-bottom: 200px; 
+    margin-bottom: 30%; 
+  }
+  
+  .h2 {
+    font-size: 14px;
+  }
+  
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+  }
+  
+  // Gère la limite du texte et les 3 '...'
+  .offerComment {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+    font-size: 12px;
+  }
+  
+  p.block {
+    width: 300px;
+  }
+  
+  ion-note {
+    font-size: 10px;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  $userBackgroundColor: color($colors, bleu, base);
+  $toUserBackgroundColor: #fff;
+  
+  ion-content .scroll-content {
+    background-color: #f5f5f5;
+  }
+  
+  #footer2 {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.11);
+    background-color: #fff;
+    height: 60px;
+  }
+  
+  .line-breaker {
+    white-space: pre-line;
+    font-size: 12px;
+  }
+  
+  .input-wrap {
+    padding: 0 5px;
+    ion-textarea {
+      position: static;
+      
+    }
+    ion-col.col {
+      padding: 0;
+    }
+    button {
+      width: 100%;
+      height: 55px;
+      font-size: 1.3em;
+      margin: 0;
+    }
+    textarea {
+      border-bottom: 1px $userBackgroundColor;
+      border-style: solid;
+    }
+  }
+  
+  .message-wrap {
+    padding: 0 10px;
+    .message {
+      position: relative;
+      padding: 7px 0;
+      .user-img {
+        position: absolute;
+        border-radius: 45px;
+        width: 40px;
+        height: 40px;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.36);
+      }
+      
+      .msg-detail {
+        width: 100%;
+        display: inline-block;
+        p {
+          margin: 0;
+        }
+        .msg-info {
+          p {
+            font-size: .8em;
+            color: #888;
+          }
+        }
+        
+        .msg-content {
+          position: relative;
+          // margin-top: 5px;
+          border-radius: 5px;
+          padding: 8px;
+          border: 1px solid #ddd;
+          color: #fff;
+          width: auto;
+          max-width: 80%;
+          span.triangle {
+            background-color: #fff;
+            border-radius: 2px;
+            height: 8px;
+            width: 8px;
+            top: 12px;
+            display: block;
+            border-style: solid;
+            border-color: #ddd;
+            border-width: 1px;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            position: absolute;
+          }
+        }
+        
+      }
+    }
+    
+    .message.left {
+      .msg-content {
+        background-color: $toUserBackgroundColor;
+        float: left;
+        // top: -15px;
+      }
+      .msg-detail {
+        padding-left: 60px;
+        // padding-top: -15px;
+      }
+      .user-img {
+        left: 0;
+      }
+      .msg-content {
+        color: #343434;
+        span.triangle {
+          border-top-width: 0;
+          border-right-width: 0;
+          left: -5px;
+        }
+      }
+      
+    }
+    
+    .message.right {
+      .msg-detail {
+        padding-right: 60px;
+        .msg-info {
+          text-align: right;
+        }
+      }
+      .user-img {
+        right: 0;
+      }
+      ion-spinner {
+        position: absolute;
+        right: 10px;
+        top: 50px;
+      }
+      .msg-content {
+        background-color: $userBackgroundColor;
+        float: right;
+        // top: -15px;
+        span.triangle {
+          background-color: $userBackgroundColor;
+          border-bottom-width: 0;
+          border-left-width: 0;
+          right: -5px;
+        }
+      }
+      
+    }
+    
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+}
+
+
+
+// Fenètre du modal viewPhoto
+ion-modal.inset-modal3 {
+  transition: opacity 1s ease-in-out;
+}

@@ -1,0 +1,75 @@
+<ion-content>
+  <div class="photoContainer">
+    <div class="logoContainer" *ngIf="!this.request.photo" (click)="choosePhoto()">
+      <i class="fa fa-picture-o fa-5x" aria-hidden="true"></i>
+      <i class="fa fa-camera-retro fa-5x" aria-hidden="true"></i>
+    </div>
+    
+    <ion-slides pager autoplay="2500" class="round" *ngIf="this.request.photo">
+      <ion-slide *ngIf="this.request.photo">
+        <img src="{{request.photo}}" alt="" class="text-center slider-item">
+        <button ion-button  clear class="expand" (click)="zoomImage()">
+          <ion-icon name="ios-expand" class="arrow"></ion-icon>
+        </button>
+      </ion-slide>
+      <ion-slide *ngIf="this.request.photo2">
+        <img src="{{request.photo2}}" alt="" class="text-center slider-item" >
+        <button ion-button  clear class="expand" (click)="zoomImage2()">
+          <ion-icon name="ios-expand" class="arrow"></ion-icon>
+        </button>
+      </ion-slide>
+      <ion-slide *ngIf="this.request.photo3">
+        <img src="{{request.photo3}}" alt="" class="text-center slider-item" >
+        <button ion-button  clear class="expand" (click)="zoomImage3()">
+          <ion-icon name="ios-expand" class="arrow"></ion-icon>
+        </button>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  
+  <div *ngIf="uploadedPhoto1 === false || uploadedPhoto2 === false || uploadedPhoto3 === false" class="align-center" style="margin-left:10px">
+    <p>Vous pouvez ajouter jusqu'à 3 photos pour illustrer votre besoin !</p>
+  </div>
+  <div *ngIf="uploadedPhoto1 === true && uploadedPhoto2 === true && uploadedPhoto3 === true" class="align-center" style="margin-left:10px; color:red; font-style: italic;">
+    <p>Vous avez atteint le nombre maximum de photos !</p>
+  </div>
+  
+  <ion-row class="align-center">
+    <ion-col>
+      <button ion-button color="danger" class="back" (click)="dismiss()" *ngIf="showAllButtons === false">
+        <ion-icon name="ios-arrow-back"></ion-icon>
+      </button>
+      <button ion-button icon-end class="photo" (click)="choosePhoto()" *ngIf="showButton1 === true">
+        Photo 1  
+        <ion-icon name="ios-images"></ion-icon>
+      </button>
+      <button ion-button icon-end class="photo" (click)="choosePhoto2()" *ngIf="showButton2 === true">
+        Photo 2  
+        <ion-icon name="ios-images"></ion-icon>
+      </button>
+      <button ion-button icon-end class="photo" (click)="choosePhoto3()" *ngIf="showButton3 === true">
+        Photo 3  
+        <ion-icon name="ios-images"></ion-icon>
+      </button>
+      
+      <div class="allButtons" *ngIf="showAllButtons === true">
+        <button ion-button color="danger" class="back" (click)="dismiss()">
+          <ion-icon name="ios-arrow-back"></ion-icon>
+        </button>
+        <button ion-button icon-end class="photoSmall" (click)="choosePhoto()">
+          1  
+          <ion-icon name="ios-images"></ion-icon>
+        </button>
+        <button ion-button icon-end class="photoSmall" (click)="choosePhoto2()">
+          2  
+          <ion-icon name="ios-images"></ion-icon>
+        </button>
+        <button ion-button icon-end class="photoSmall" (click)="choosePhoto3()">
+          3  
+          <ion-icon name="ios-images"></ion-icon>
+        </button>
+      </div>
+      
+    </ion-col>
+  </ion-row>
+</ion-content>

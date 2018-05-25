@@ -1,0 +1,71 @@
+{
+  "_from": "com-sarriaroman-photoviewer",
+  "_id": "com-sarriaroman-photoviewer@1.1.11",
+  "_inBundle": false,
+  "_integrity": "sha512-whkbi6oWA+/atDS4YoxmqH1oOUB9Qt+CFih9RAgj9G1i+ytoBr1ik6TyPm1GsnIhnOS4g6Aa2RKDaLld5EC3Mg==",
+  "_location": "/com-sarriaroman-photoviewer",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "com-sarriaroman-photoviewer",
+    "name": "com-sarriaroman-photoviewer",
+    "escapedName": "com-sarriaroman-photoviewer",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/com-sarriaroman-photoviewer/-/com-sarriaroman-photoviewer-1.1.11.tgz",
+  "_shasum": "29304b15c22ad1214fa8049c3195cd0fb378737b",
+  "_spec": "com-sarriaroman-photoviewer",
+  "_where": "C:\\Users\\Flo\\Documents\\Web development\\Appli\\Ionic\\WebJobbing_v2",
+  "author": {
+    "name": "Román A. Sarria"
+  },
+  "bugs": {
+    "url": "https://github.com/sarriaroman/photoviewer/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "com-sarriaroman-photoviewer",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "This plugin is intended to show a picture from an URL into a Photo Viewer with zoom features.",
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=4.0.0"
+    },
+    {
+      "name": "cordova-android",
+      "version": ">=4"
+    },
+    {
+      "name": "cordova-plugman",
+      "version": ">=4.2.0"
+    }
+  ],
+  "homepage": "https://github.com/sarriaroman/photoviewer#readme",
+  "keywords": [
+    "cordova",
+    "photoviewer",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "license": "MIT",
+  "name": "com-sarriaroman-photoviewer",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sarriaroman/photoviewer.git"
+  },
+  "version": "1.1.11"
+}

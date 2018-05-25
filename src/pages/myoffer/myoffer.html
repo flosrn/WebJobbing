@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar color="bleu">
+    <ion-title>Mes offres</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content 
+    pullingText="Pull to refresh"
+    refreshingText="Refreshing..."> 
+  </ion-refresher-content>
+</ion-refresher>
+<ion-list>
+  
+  <ion-item-sliding #item *ngFor="let offer of offerList$">  
+    <ion-item>
+      <div item-start>
+        <img src="{{offer.userOffer.avatar}}" class="avatar">
+      </div>
+      <h2 class="h2">{{offer.userOffer.firstName}} {{offer.userOffer.lastName.slice(0,1)}}.</h2>
+      <p class="offerComment">{{offer.comment}}</p> 
+      <ion-note item-right color="orangé">{{offer.price}} €</ion-note> 
+    </ion-item>
+    
+    <ion-item-options side="right">
+      <button ion-button color="primary">
+        <ion-icon name="create"></ion-icon>
+        Modifier  
+      </button>
+      <button ion-button color="danger">
+        <ion-icon name="trash"></ion-icon>
+        Supprimer
+      </button>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
+<div class="container1" *ngIf="this.showContainer === true">  
+  <p class="container__text1">Vous n'avez pas encore posté d'offre !</p>
+</div>
+</ion-content>
+

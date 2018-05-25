@@ -1,0 +1,57 @@
+<ion-list *ngIf="userProfile">
+  <ion-list-header>
+    <div item-start>
+      <img class="profilePic" src="{{userProfile.avatar}}">
+    </div>
+    <p class="userName">{{userProfile.firstName}} {{userProfile.lastName}}</p>
+    <p class="job" color="orangé" *ngIf="this.userProfile.jobberStatut === true">Jobbeur<ion-icon class="iconBadge" color="orangé" name="ios-ribbon"></ion-icon></p>
+    <p class="job" *ngIf="this.userProfile.jobberStatut === false">Utilisateur</p>
+  </ion-list-header>
+</ion-list>
+<ion-list no-border>
+  <ion-list-header>
+    General
+  </ion-list-header>
+  <ion-item (click)="navigateToProfilePage()">
+    <ion-icon name='contact' item-start></ion-icon>
+    <ion-label>Mon profil</ion-label>
+  </ion-item>
+  <ion-item>  
+    <ion-toggle *ngIf="userProfile" [(ngModel)]="userProfile.jobberStatut" (ionChange)="toggleJobber(userProfile.jobberStatut)"  color="orangé"></ion-toggle>
+    <ion-label class="label">Devenir Jobbeur</ion-label>
+    <ion-icon name='ios-man' item-start></ion-icon>
+  </ion-item>
+  <ion-item (click)="navigateToAdminPage()" *ngIf="userProfile && this.userProfile.userPermission === 2">
+    <ion-icon name='settings' item-start></ion-icon>
+    <ion-label>Admin</ion-label>
+  </ion-item>
+</ion-list>
+<ion-list>
+  <ion-list-header>
+    Jobbing
+  </ion-list-header>
+  <ion-item (click)="navigateToMyRequestPage()">
+    <ion-icon name='ios-list-box' item-start></ion-icon>
+    <ion-label>Mes annonces</ion-label>
+  </ion-item>
+  <ion-item (click)="navigateToMyOfferPage()">
+    <ion-icon name='ios-calculator' item-start></ion-icon>
+    <ion-label>Mes offres</ion-label>
+  </ion-item>
+</ion-list>
+<ion-list>
+  <ion-list-header>
+    Autre
+  </ion-list-header>
+  <ion-item>
+    <ion-icon name='power' item-start></ion-icon>
+    <button ion-button (click)="logOut()" color="orangé" item-end>
+      Déconnexion
+    </button>
+  </ion-item>
+  <div class="align-center">
+    <p class="copyright">2018, WebJobbing © v0.0.1 beta</p>  
+    <p class="copyright2">An application made with <ion-icon name="heart"></ion-icon></p>
+    <p class="copyright2">Powered by Florian SERAN</p>
+  </div>
+</ion-list>

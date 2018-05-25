@@ -1,0 +1,98 @@
+page-welcome {
+
+  .logo {
+    width: 250px;
+    margin-top: 50px;
+  }
+
+  .bg-logo {
+    text-align: center;
+    position: absolute;
+    z-index:1000; 
+    width: 100%;
+  }
+
+  ion-slide {
+    // background-color: #f8f8f8;
+    background-color: white;
+  }
+
+  ion-content {
+    height: 100%;
+  }
+
+  #button {  
+    bottom:120px;
+    top: 90%; 
+    text-align:center; 
+    z-index:1000; 
+    width:100%;
+    position: absolute;
+  }
+
+  // Pagination position
+  .swiper-pagination {
+    top: 82.8%;
+    bottom: inherit;
+  }
+
+  // Pagination couleur 
+  .swiper-pagination-bullet-active {
+    background: color($colors, bleu);
+  }
+
+
+  .text {
+    padding-left: 10%;
+    padding-right: 10%;
+    //margin: 0 auto;
+    //font-family: Anonymous;
+  }
+  .text2 {
+    margin-top: 50px;
+    margin-bottom: 0px;
+    //margin: 0 auto;
+  }
+
+  #component {
+    padding-top: 0%;
+  }
+
+  .howWork {
+    margin-bottom: 0%;
+  }
+
+  h5 {
+    font-size: 13px;
+  }
+
+  .yo {
+    top: 50%;
+  }
+
+  .icons {
+    z-index: 1000;
+    width: 250px;
+    //top: 20%; 
+    
+    // margin: 0 auto;
+    //text-align: center;
+    //position: absolute;
+  }
+
+  .icons-conteneur {
+    text-align: center;
+    position: absolute;
+    width: 450px;
+    padding-bottom: 17%;  
+    // margin: 0 auto;
+    // top: 80%;
+    position: absolute; /* postulat de départ */
+    top: 50%; left: 50%; /* à 50%/50% du parent référent */
+    transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
+  }
+
+  .textIcons {
+    margin-top: 87%;
+  }
+}

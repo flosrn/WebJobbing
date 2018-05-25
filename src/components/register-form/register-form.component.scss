@@ -1,0 +1,68 @@
+
+app-register-form {
+  
+.logo {
+    width: 100%;
+    height: auto;
+    max-width: 18em;
+    margin: 0 auto;
+    padding-bottom: 50px;
+  }
+  .no-border {
+    border-bottom: 0 !important;
+    box-shadow: none !important;
+  }
+  ion-row {
+    align-items: center;
+    text-align: center;
+  }
+  @media only screen and (min-width: 768px) {
+    ion-col.col {
+      margin: 0 auto;
+      max-width: 40%;
+    }
+  }
+//   span {
+//     color: white;
+//   }
+  ion-item {
+    // border-radius: 30px !important;
+    padding-left: 10px !important;
+    margin-bottom: 10px;
+    background-color: #f6f6f6;
+    opacity: 0.7;
+    // font-size: 0.9em;
+  }
+  ion-list {
+    margin: 0;
+  }
+  .login {
+    width: 70%;
+    border-radius: 5px;
+    font-size: 0.9em;
+  }
+  
+  .back {
+    border-radius: 5px;
+    font-size: 0.9em;
+  } 
+
+  .text-input::-moz-placeholder {  
+    font-size: 13px;
+  }
+
+  .CGU {
+    font-size: 10px;   
+    background-color: transparent;
+  }
+
+
+
+  .error {
+    color: rgb(223, 62, 62);
+    font-size: 11px;
+  
+  }
+
+
+}

@@ -1,0 +1,60 @@
+app-settings {
+
+  .profilePic {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%
+  }
+
+  .userName {
+    font-size: 17px;
+    color: black;
+  }
+
+  .job {
+    font-size: 11px;
+    color: color($colors, orangé, base);
+  }
+
+  .iconBadge {
+    padding-left: 10px;
+    font-size: 15px;
+  }
+
+  .label {
+    // color: #7f7f7f;
+  }
+
+  ion-icon {
+    color: color($colors, bleu, base);
+  }
+
+  .align-center {
+    text-align: center;
+  }
+
+  .copyright {
+    color: grey;
+    font-size: 12px;
+    // font-style: italic;
+    font-weight: bold;
+    padding-top: 10px;
+    margin: 1;
+  }
+
+  .copyright2 {
+    color: grey;
+    font-size: 12px;
+    font-style: italic;
+    margin: 0;
+    ion-icon {
+      color : rgb(226, 37, 37);
+      font-size: 11px;
+    }
+  }
+
+
+
+
+
+}

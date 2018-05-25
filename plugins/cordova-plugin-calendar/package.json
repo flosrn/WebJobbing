@@ -1,0 +1,67 @@
+{
+  "_from": "cordova-plugin-calendar@5.0.0",
+  "_id": "cordova-plugin-calendar@5.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-Z2Fwv47a7hi18hcOwEodEjyykOFUxbgslzYN7Rh6eoh0lL94k+G1xjVUQeWSbG7sGp5cwYdmWJ6XyxrNmYrWSg==",
+  "_location": "/cordova-plugin-calendar",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "cordova-plugin-calendar@5.0.0",
+    "name": "cordova-plugin-calendar",
+    "escapedName": "cordova-plugin-calendar",
+    "rawSpec": "5.0.0",
+    "saveSpec": null,
+    "fetchSpec": "5.0.0"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-calendar/-/cordova-plugin-calendar-5.0.0.tgz",
+  "_shasum": "e7ba65b427a82ed347d340a450f11d27a0bb17be",
+  "_spec": "cordova-plugin-calendar@5.0.0",
+  "_where": "C:\\Users\\Flo\\Documents\\Web development\\Appli\\Ionic\\WebJobbing_v2",
+  "author": {
+    "name": "Eddy Verbruggen",
+    "email": "eddyverbruggen@gmail.com",
+    "url": "https://github.com/EddyVerbruggen"
+  },
+  "bugs": {
+    "url": "https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-calendar",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "deprecated": false,
+  "description": "This plugin allows you to manipulate the native calendar.",
+  "engines": {
+    "cordovaDependencies": {
+      "3.0.0": {
+        "cordova-android": ">=6.3.0"
+      }
+    }
+  },
+  "homepage": "https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin#readme",
+  "keywords": [
+    "Calendar",
+    "Agenda",
+    "Event",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-calendar",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin.git"
+  },
+  "version": "5.0.0"
+}

@@ -1,0 +1,148 @@
+
+<!-- <form #loginForm="ngForm" novalidate> -->
+  <form novalidate (ngSubmit)="register()" [formGroup]="signupform">
+    <div padding>  
+      <ion-row>
+        <ion-col>
+          <img class="logo" src="./assets/img/logo2.png" />
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col no-padding>
+          <ion-list inset class="no-border">
+            
+            <!-- Input de l'email -->
+            <ion-item>
+              <ion-label><ion-icon name="mail"></ion-icon></ion-label>
+              <ion-input clearInput [(ngModel)]="account.email" placeholder="Adresse mail" formControlName="email" [class.error1]="!signupform.controls.email.valid && signupform.controls.email.dirty"></ion-input>
+            </ion-item>
+            <!-- Messages d'erreur de l'email -->
+            <ion-item no-lines *ngIf="( signupform.get('email').hasError('minlength') || signupform.get('email').hasError('pattern') ||signupform.get('email').hasError('required') ) && signupform.get('email').touched">
+              <div class="error" *ngIf="signupform.get('email').hasError('required') && signupform.get('email').touched">
+                Veuillez entrer votre adresse email
+              </div>
+              <div class="error" *ngIf="signupform.get('email').hasError('pattern') && signupform.get('email').touched">
+                L'adresse email est invalide
+              </div>
+            </ion-item>     
+            
+            <!-- Input du mot de passe -->
+            <ion-item>
+              <ion-label><ion-icon name="ios-key"></ion-icon></ion-label>
+              <ion-input clearInput [(ngModel)]="account.password" placeholder="Mot de passe" type="{{type}}" formControlName="password" [class.error1]="!signupform.controls.password.valid && signupform.controls.password.dirty"></ion-input>
+              <button *ngIf="!showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> <ion-icon name="eye"></ion-icon></button>
+              <button *ngIf="showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> <ion-icon name="eye-off"></ion-icon></button>  
+            </ion-item>   
+            <!-- Messages d'erreur du mot de passe -->
+            <ion-item no-lines *ngIf="( signupform.get('password').hasError('minlength') || signupform.get('password').hasError('maxlength') || signupform.get('password').hasError('pattern') || signupform.get('password').hasError('required') ) && signupform.get('password').touched">
+              <div class="error" *ngIf="signupform.get('password').hasError('required') && signupform.get('password').touched">
+                Veuillez entrer votre mot de passe  
+              </div>
+              <div class="error" *ngIf="signupform.get('password').hasError('minlength') && signupform.get('password').touched">
+                6 caractères minimum
+              </div>
+              <div class="error" *ngIf="signupform.get('password').hasError('maxlength') && signupform.get('password').touched">
+                12 caractères maximum   
+              </div>
+              <div class="error" *ngIf="signupform.get('password').hasError('pattern') && signupform.get('password').touched">
+                Au moins une lettre et un chiffre   
+              </div>
+            </ion-item>          
+            
+            <!-- Input de la confirmation du mot de passe -->
+            <ion-item>  
+              <ion-label><ion-icon name="ios-key"></ion-icon></ion-label>
+              <ion-input clearInput [(ngModel)]="account.password2" placeholder="Confirmation" type="{{type}}" formControlName="password2" [class.error1]="!signupform.controls.password2.valid && signupform.controls.password2.dirty"></ion-input>
+              <button *ngIf="!showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> <ion-icon name="eye"></ion-icon></button>
+              <button *ngIf="showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> <ion-icon name="eye-off"></ion-icon></button>  
+            </ion-item>
+            <!-- Messages d'erreur de la confirmation du mot de passe -->
+            <ion-item no-lines *ngIf="( signupform.get('password2').hasError('minlength') || signupform.get('password2').hasError('maxlength') || signupform.get('password2').hasError('pattern') || signupform.get('password2').hasError('required') ) && signupform.get('password2').touched">
+              <div class="error" *ngIf="signupform.get('password2').hasError('required') && signupform.get('password2').touched">
+                Veuillez entrer votre mot de passe  
+              </div>
+              <div class="error" *ngIf="signupform.get('password2').hasError('minlength') && signupform.get('password2').touched">
+                6 caractères minimum
+              </div>
+              <div class="error" *ngIf="signupform.get('password2').hasError('maxlength') && signupform.get('password2').touched">
+                12 caractères maximum   
+              </div>
+              <div class="error" *ngIf="signupform.get('password2').hasError('pattern') && signupform.get('password2').touched">
+                Doit contenir une lettre et un chiffre   
+              </div>
+              <!-- <div class="error" *ngIf="account.password != account.password2"> 
+                Les mots de passe ne sont pas identiques     
+              </div> -->
+            </ion-item>         
+          </ion-list>  
+
+          <!-- Condition générale d'utilisation -->
+          <ion-item class="CGU" no-lines>
+            <ion-label class="CGU">J'accepte les conditions d'utilisation</ion-label> 
+            <ion-toggle color="secondary" [checked]="isToggled" (ionChange)="toggle()"></ion-toggle>
+          </ion-item> 
+          <!-- Bouton back -->
+          <button type="button" ion-button class="back" color="danger" (click)="back()"><ion-icon name="ios-arrow-back"></ion-icon></button>
+          <!-- Inscription => Condition : que les form soient valides, que les mdp correspondent, que les CGU soit cochées -->
+          <button type="submit" ion-button class="login" color="bleu" (click)="register()" [disabled]="signupform.invalid || account.password != account.password2 || !isToggled">Inscription</button>   
+        </ion-col>
+      </ion-row> 
+      <ion-row>    
+        <ion-col>   
+          <div>
+            <span (click)="navigateToLoginPage()">Ou se connecter</span> 
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </form>
+  
+  
+  
+  
+  <!-- <ion-list>
+    <form novalidate (ngSubmit)="signup()" [formGroup]="signupform">
+      
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input type="text" [(ngModel)]="account.email" formControlName="email" [class.error1]="!signupform.controls.email.valid && signupform.controls.email.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="( signupform.get('email').hasError('minlength') || signupform.get('email').hasError('pattern') ||signupform.get('email').hasError('required') ) && signupform.get('email').touched">
+        <div class="error" *ngIf="signupform.get('email').hasError('required') && signupform.get('email').touched">
+          Please input your email
+        </div>
+        <div class="error" *ngIf="signupform.get('email').hasError('pattern') && signupform.get('email').touched">
+          Email address invalid
+        </div>
+      </ion-item>
+      
+      
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input type="password" [(ngModel)]="account.password" formControlName="password" [class.error1]="!signupform.controls.password.valid && signupform.controls.password.dirty"></ion-input>
+      </ion-item>
+      
+      <ion-item no-lines *ngIf="( signupform.get('password').hasError('minlength') || signupform.get('password').hasError('maxlength') ||signupform.get('password').hasError('required') ) && signupform.get('password').touched">
+        <div class="error" *ngIf="signupform.get('password').hasError('required') && signupform.get('password').touched">
+          Please input your password
+        </div>
+        <div class="error" *ngIf="signupform.get('password').hasError('minlength') && signupform.get('password').touched">
+          Minimum 6 characters
+        </div>
+        <div class="error" *ngIf="signupform.get('password').hasError('maxlength') && signupform.get('password').touched">
+          Maximum 12 characters
+        </div>
+      </ion-item>
+      <button type="submit" ion-button block color="primary" [disabled]="signupform.invalid">SIGNUP</button>
+    </form>
+  </ion-list>    -->
+  
+  <!-- <style type="text/css">
+    .error {
+      color: rgb(223, 62, 62);
+      font-size: 11px;
+    }
+    
+    .error1 {
+      color: rgb(75, 75, 75);
+      border-bottom: 1px solid #ff0000; -->

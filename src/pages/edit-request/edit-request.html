@@ -1,0 +1,211 @@
+<ion-header>
+  
+    <ion-navbar color="bleu">
+      <ion-title color="bleu" *ngIf="this.slides.getActiveIndex()===0">Créer un besoin</ion-title>
+      <ion-title color="bleu" *ngIf="this.slides.getActiveIndex()===1">Localisation</ion-title>
+      <ion-title color="bleu" *ngIf="this.slides.getActiveIndex()===2">Date</ion-title>
+      <ion-title color="bleu" *ngIf="this.slides.getActiveIndex()===3">Budget</ion-title>
+      <ion-buttons end *ngIf="this.slides.getActiveIndex()===1">
+        <button ion-button icon-only (click)='toggleSearch()'>
+          <ion-icon name="search"></ion-icon>
+        </button>
+        <button ion-button icon-only (click)='choosePosition()'>
+          <ion-icon name="ios-locate-outline"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+    
+    <ion-toolbar>
+      
+      <!-- Icon 1 -->
+      <div class="button1">
+        <ion-buttons start>
+          <button ion-button icon-only (click)="goToSlideOne()">
+            <ion-icon class="iconActive" color="active" name="create" *ngIf="this.slides.getActiveIndex()===0"></ion-icon>
+            <ion-icon class="iconInactive" name="create" color="inactive"></ion-icon>
+          </button>
+        </ion-buttons>
+      </div>
+      
+      <!-- Icon 2 -->
+      <div class="button2">
+        <ion-buttons start>
+          <button ion-button icon-only (click)="goToSlideTwo()">
+            <ion-icon class="iconActive" color="active" name="pin" *ngIf="this.slides.getActiveIndex()===1"></ion-icon>
+            <ion-icon class="iconInactive" name="pin" color="inactive"></ion-icon>
+          </button>
+        </ion-buttons>
+      </div>
+      
+      <!-- Icon 3 -->
+      <div class="button3">
+        <ion-buttons start>
+          <button ion-button icon-only (click)="goToSlideThree()">
+            <ion-icon class="iconActive" color="active" name="calendar" *ngIf="this.slides.getActiveIndex()===2"></ion-icon>
+            <ion-icon class="iconInactive" name="calendar" color="inactive"></ion-icon>
+          </button>
+        </ion-buttons>
+      </div>
+      
+      <!-- Icon 4 -->
+      <div class="button4"> 
+        <ion-buttons start>
+          <button ion-button icon-only (click)="goToSlideFour()">
+            <ion-icon class="iconActive" color="active" name="logo-euro" *ngIf="this.slides.getActiveIndex()===3"></ion-icon>
+            <ion-icon class="iconInactive" name="logo-euro" color="inactive"></ion-icon>
+          </button>
+        </ion-buttons>
+      </div>
+      
+    </ion-toolbar>
+    
+  </ion-header> 
+  
+  <ion-content auto-hide>
+    
+    <ion-slides (ionSlideDidChange)="slideChanged()">
+      
+      <!-- Slide 1 -->
+      
+      <ion-slide> 
+        <ion-item>
+          <ion-label class="title" color="bleu" stacked>Titre de votre besoin</ion-label>
+          <ion-input [(ngModel)]="request.title" placeholder="Exemple : Ordinateur infecté" maxlength="35" (keypress)="onKeyTitlePressed($event)"></ion-input>
+        </ion-item>
+        <p class="count" *ngIf="this.showCharactereCountTitle">Plus que {{35 - request.title.length}} caractères</p>
+        <ion-item>
+          <ion-label color="bleu" stacked>Description</ion-label>
+          <ion-textarea [(ngModel)]="request.description" placeholder="Décrivez ici votre besoin"  maxlength="400"  name="dummyText" autosize (keypress)="onKeyTextPressed($event)"></ion-textarea>
+        </ion-item>
+        <p class="count" *ngIf="this.showCharactereCountText">Plus que {{400 - request.description.length}} caractères</p>
+        
+        <div class="center">
+          <button ion-button icon-start class="popup-menu-toggle" (click)="togglePopupMenu()" [ngClass]="{'out': openMenu}">
+            <ion-icon name="md-list-box"></ion-icon>
+            Categorie
+          </button>
+          
+          <button ion-button icon-end color="bleu" (click)="openModal(request)">
+            Photos
+            <ion-icon name="ios-images"></ion-icon>
+          </button>
+   
+        </div>
+        
+      </ion-slide>
+      
+      
+      <!-- Slide 2 -->
+      <ion-slide class="slide">
+        <!-- <div class="switch">
+          <button ion-button color="light" (click)="(switch = 'map'); resizeMap()" [class.active]="(switch == 'map')" icon-only><ion-icon name="map"></ion-icon></button>
+          <button ion-button color="light" (click)="(switch = 'list'); " [class.active]="(switch == 'list')" icon-only><ion-icon name="list"></ion-icon></button>
+        </div> -->
+        
+        <!-- <div class="currentitem" *ngIf="currentregional">
+          <button ion-item no-lines (click)="viewPlace(currentregional.title)">
+            <h2>{{ currentregional.title }}</h2>
+            <ion-note item-right icon-only><ion-icon name="ios-arrow-forward"></ion-icon></ion-note>
+          </button>
+        </div> -->
+        
+        
+        <div class="map" [class.hidemap]="!((switch == 'map') || error)">
+          <ion-searchbar #searchbar placeholder="Rechercher" [hidden]="search" [(ngModel)]="request.position"></ion-searchbar>
+          <div id="map" #map></div>
+        </div>
+      </ion-slide>
+      
+      <!-- Slide 3 -->
+      <ion-slide>
+        <ion-list radio-group>
+          <ion-item>
+            <ion-label stacked>Je choisi mes dates</ion-label>
+            <ion-radio color="orangé" (click)="toggleCheckbox()"></ion-radio>
+          </ion-item>
+          
+          <div *ngIf="showItem">
+            <ion-item>
+              <ion-label color="bleu" stacked>Vos disponibilitées</ion-label>
+              <ion-label stacked>Du</ion-label>
+              <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="request.date" placeholder="01/01/2018"
+              doneText="Valider" cancelText="Annuler"></ion-datetime>
+            </ion-item>
+            <ion-item>
+              <ion-label stacked>Au</ion-label>
+              <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="request.date2" placeholder="05/01/2018"
+              doneText="Valider" cancelText="Annuler"></ion-datetime>
+            </ion-item>
+          </div>
+          <div class="jobberDate">
+            <ion-item no-lines>
+              <ion-label stacked>Je laisse le jobber choisir la date</ion-label>
+              <ion-radio color="orangé" (click)="toggleCheckbox2()"></ion-radio>
+            </ion-item>
+          </div>
+        </ion-list>
+      </ion-slide>
+      
+      <!-- Slide 4 -->
+      <ion-slide>
+        <!-- <ion-item>
+          <ion-label color="orangé" stacked>Votre budget</ion-label>
+          <ion-input [(ngModel)]="knobValues" placeholder="Exemple: 50">€</ion-input>
+        </ion-item> -->
+        <ion-item>
+          <ion-label color="bleu" stacked>Votre budget</ion-label>
+          <ion-badge color="orangé" item-end>{{ this.request.priceMin }}</ion-badge>
+          <ion-badge color="orangé" item-end>{{ this.request.priceMax }}</ion-badge>
+        </ion-item>
+        <ion-item>
+          <!-- <ion-label>Votre budget</ion-label>  -->
+          <ion-range color="orangé" dualKnobs="true" [(ngModel)]="price" (ionChange)="setPrice()" min="15" max="500" pin="true" step="5">
+            <ion-label range-left><i class="fa fa-eur fa-lg" aria-hidden="true"></i></ion-label>
+            <ion-label range-right><i class="fa fa-eur fa-2x" aria-hidden="true"></i></ion-label>
+          </ion-range>
+        </ion-item>    
+        
+        
+      </ion-slide>
+      
+    </ion-slides>
+    
+    
+    <div class="popup-menu" *ngIf="this.slides.getActiveIndex() === 0">
+      <div class="popup-menu-overlay" [ngClass]="{'in': openMenu}" (click)="togglePopupMenu()"></div>
+      <!-- <div class="popup-menu-toggle" (click)="togglePopupMenu()" [ngClass]="{'out': openMenu}">yoyoyoyo</div> -->
+      <!-- <button ion-button class="popup-menu-toggle" (click)="togglePopupMenu()" [ngClass]="{'out': openMenu}">Categorie</button> -->
+      <div class="popup-menu-panel" [ngClass]="{'in': openMenu}">
+        <div class="popup-menu-item" (click)="catPc()">
+          <ion-icon><i class="fa fa-desktop fa-3x" aria-hidden="true"></i></ion-icon>
+          <span>PC</span>
+        </div>
+        <div class="popup-menu-item" (click)="catTablet()">
+          <ion-icon><i class="fa fa-tablet fa-lg" aria-hidden="true"></i></ion-icon>
+          <span>TABLETTE</span>
+        </div>
+        <div class="popup-menu-item" (click)="catPhone()">
+          <ion-icon><i class="fa fa-mobile" aria-hidden="true"></i></ion-icon>
+          <span>SMARTPHONE</span>
+        </div>
+        <div class="popup-menu-item" (click)="catTv()">
+          <ion-icon><i class="fa fa-television" aria-hidden="true"></i></ion-icon>
+          <span>TV</span>
+        </div>
+        <div class="popup-menu-item" (click)="catCourse()">
+          <ion-icon name="ios-school"></ion-icon>
+          <span>FORMATION</span>
+        </div>
+        <div class="popup-menu-item" (click)="catOthers()">
+          <ion-icon name="help"></ion-icon>
+          <span>AUTRES</span>
+        </div>
+      </div>
+    </div>
+    
+    <button *ngIf="this.slides.getActiveIndex() < 3" class="suivant" color="bleu" ion-button full (click)="goToNextSlide()">Suivant</button>
+    <!-- <button *ngIf="this.slides.getActiveIndex() === 1" class="suivant2" color="bleu" ion-button full (click)="goToNextSlide()">Suivant</button> -->
+    <button *ngIf="this.slides.getActiveIndex()===3" class="suivant" color="bleu" ion-button full (click)="saveRequest(request)">Enregistrer</button>
+    
+  </ion-content>
+  

@@ -1,0 +1,37 @@
+{
+  "name": "angular-clamp",
+  "main": "ng-clamp.js",
+  "homepage": "https://github.com/dockawash/angular-clamp",
+  "authors": [
+    "Coffa"
+  ],
+  "description": "bower of angular-clamp",
+  "location": "git@github.com/dockawash/angular-clamp.git",
+  "keywords": [
+    "bower",
+    "angular",
+    "clamp",
+    "ngclamp"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "*"
+  },
+  "_release": "69970512fe",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "69970512fe4add8b055fc1d10cc6a125ed95e2f2"
+  },
+  "_source": "https://github.com/dockawash/angular-clamp.git",
+  "_target": "*",
+  "_originalSource": "angular-clamp",
+  "_direct": true
+}

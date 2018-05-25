@@ -1,0 +1,44 @@
+<div padding>  
+  <ion-row>
+    <ion-col>
+      <img class="logo" src="./assets/img/logo2.png" />   
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col no-padding class="form">
+      <ion-list inset class="no-border">
+        <ion-item>
+          <div style="text-align: center">
+            <img src="{{profile.avatar}}" class="profilePic" (click)="choosePicture()">  
+            <div (click)="choosePicture()"><p class="addCover">Ajouter une photo de profil</p></div>
+          </div>   
+          
+        </ion-item>
+        <ion-item>
+          <ion-label><ion-icon name="ios-person-outline"></ion-icon></ion-label>
+          <ion-input clearInput [(ngModel)]="profile.firstName" placeholder="Prénom" type="text" required></ion-input>
+        </ion-item>   
+        
+        <ion-item>
+          <ion-label><ion-icon name="ios-person"></ion-icon></ion-label>
+          <ion-input clearInput [(ngModel)]="profile.lastName" placeholder="Nom" type="text" required></ion-input>
+        </ion-item>
+        
+        <ion-item>    
+          <ion-label><ion-icon name="ios-calendar-outline"></ion-icon></ion-label>  
+          <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="profile.dateOfBirth"></ion-datetime>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label><ion-icon name="ios-compass"></ion-icon></ion-label>
+          <ion-input clearInput [(ngModel)]="profile.location" placeholder="Ville" type="text" required></ion-input>
+        </ion-item> 
+        
+      </ion-list>  
+      
+      <button ion-button class="back" color="danger" (click)="back()"><ion-icon name="ios-arrow-back"></ion-icon></button>
+      <button ion-button class="login" color="bleu" (click)="saveProfile()">Enregistrer</button>
+      <!-- <button ion-button class="login" color="bleu" (click)="uploadCover()">Cover</button> -->
+    </ion-col>
+  </ion-row> 
+</div>

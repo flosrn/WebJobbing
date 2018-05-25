@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-navbar color="bleu">
+    <ion-title>Mes annonces</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content 
+    pullingText="Pull to refresh"
+    refreshingText="Refreshing..."> 
+  </ion-refresher-content>
+</ion-refresher>
+<ion-list>
+  
+  <ion-item-sliding #item *ngFor="let request of requestList$">  
+    <ion-item> 
+      <div item-end class="userContent" (click)="openModal(request)">
+        <img src="{{request.userRequest.avatar}}" class="avatar">
+        <p class="name" color="bleu">{{request.userRequest.firstName}} {{request.userRequest.lastName.slice(0,1)}}.</p>
+      </div>
+      <div (click)="openModal(request)">  
+        <h2 class="h2">{{request.title}}</h2>
+        <p class="description">{{request.description}}</p>  
+        <ion-row>
+          <ion-col col-4 class="price">
+            <ion-icon name="logo-euro"></ion-icon>
+            {{request.priceMin}} - {{request.priceMax}} 
+          </ion-col>  
+          <ion-col col-8 class="pos">
+            <ion-icon name="compass"></ion-icon>
+            {{request.position}} 
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-item> 
+    
+    <ion-item-options side="right">
+      <button ion-button color="primary" navPush="EditRequestPage" [navParams]="{request: request}">
+        <ion-icon name="create"></ion-icon>
+        Modifier  
+      </button>
+      <button ion-button color="danger">
+        <ion-icon name="trash"></ion-icon>
+        Supprimer
+      </button>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
+<div class="container1" *ngIf="this.showContainer === true">  
+  <p class="container__text1">Vous n'avez pas encore posté d'annonce !</p>
+</div>
+<div class="container2" *ngIf="this.showContainer === false">
+  <p class="container__text2">Pour modifier une annonce, posez votre doigt sur l'annonce et slidez vers la gauche</p>
+</div>
+<ion-fab right bottom #fab>
+  <button ion-fab color="bleu" navPush="AddRequestPage"><ion-icon name="create"></ion-icon></button>
+</ion-fab>
+</ion-content>
+

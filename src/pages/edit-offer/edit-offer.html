@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-row class="header">
+    <ion-col col-8 class="col1">
+      <h4>{{ request.title }}</h4>
+      <ion-col class="info">
+        <ion-icon name="compass"></ion-icon>
+        {{ request.position }}
+      </ion-col>
+      <ion-col class="info">
+        <ion-icon name="logo-euro"></ion-icon>
+        {{ request.priceMin }} - {{ request.priceMax }}
+      </ion-col>
+    </ion-col>
+    <ion-col col-4 class="col2">
+      <div class="userContent"> 
+        <img 
+        src="{{request.userRequest.avatar}}" 
+        alt="avatar" class="profilePic" 
+        navPush="UserProfilePage" 
+        [navParams]="{uidProfile: this.request.uidProfile}">
+        <div class="name">{{request.userRequest.firstName}} {{request.userRequest.lastName}}</div>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-header>
+
+<ion-content>
+
+  <div  class="content">
+    <ion-row>
+      <ion-col text-wrap>
+        
+        <ion-item class="paiement" no-lines>
+          <ion-label stacked>Votre offre :</ion-label>
+          <ion-input
+          [(ngModel)]="offer.price" 
+          type="number" 
+          placeholder="Minimum {{ request.priceMin }} €" 
+          min="{{ request.priceMin }}"
+          max="{{ request.priceMax }}"
+          ></ion-input>
+        </ion-item>
+        
+        <ion-item class="commentary" no-lines>
+          <ion-label stacked>Commentaire :</ion-label>
+          <!-- <ion-input type="text" [(ngModel)]="offer.comment" placeholder="Laissez un commentaire"></ion-input> -->
+          <ion-textarea [(ngModel)]="offer.comment" placeholder="Laissez un commentaire" name="dummyText" autosize></ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </div>
+  
+  
+</ion-content>
+<ion-footer>
+  <div class="align-center"> 
+    <button ion-button color="danger" class="back" (click)="back()">
+      <ion-icon name="ios-arrow-back"></ion-icon>
+    </button>
+    <button ion-button color="bleu" class="offer" (click)="addOffer(offer)"> 
+      ENVOYER
+    </button> 
+  </div>
+</ion-footer>

@@ -1,0 +1,237 @@
+<ion-header>
+  <ion-row class="header">
+    <ion-col col-8 class="col1">
+      <div class="align-center">
+        <h4>{{ request.title }}</h4>
+      </div>
+      <ion-col class="info">
+        <ion-icon name="compass"></ion-icon>
+        {{ request.position }}
+      </ion-col>
+      <ion-col class="info">
+        <ion-icon name="logo-euro"></ion-icon>
+        {{ request.priceMin }} - {{ request.priceMax }}
+      </ion-col>
+      <div class="category">
+        {{ request.category }}
+      </div>
+    </ion-col>
+    <ion-col col-4 class="col2">
+      <div class="userContent"> 
+        <img 
+        src="{{request.userRequest.avatar}}" 
+        alt="avatar" class="profilePic" 
+        navPush="UserProfilePage" 
+        [navParams]="{uidProfile: this.request.uidProfile}">
+        <div class="name">{{request.userRequest.firstName}} {{request.userRequest.lastName.slice(0,1)}}.</div>
+      </div>
+    </ion-col>
+  </ion-row>
+  
+  <ion-toolbar>
+    <!-- Icon 1 -->
+    <div class="button1">
+      <ion-buttons start>
+        <button ion-button icon-only (click)="goToSlideOne()" (click)="hidePhoto()">
+          <ion-icon class="iconActive" color="active" name="ios-paper" *ngIf="this.slides.getActiveIndex()===0"></ion-icon>
+          <ion-icon class="iconInactive" name="ios-paper" color="inactive" *ngIf="this.slides.getActiveIndex()!==0"></ion-icon>
+        </button>
+      </ion-buttons>
+    </div>
+    
+    <!-- Icon 2 -->
+    <div class="button2">
+      <ion-buttons start>
+        <button ion-button icon-only (click)="goToSlideTwo()">
+          <ion-icon class="iconActive" color="active" name="ios-people" *ngIf="this.slides.getActiveIndex()===1"></ion-icon>
+          <ion-icon class="iconInactive" name="ios-people" color="inactive" *ngIf="this.slides.getActiveIndex()!==1"></ion-icon>
+        </button>
+      </ion-buttons>
+    </div> 
+    
+    <!-- Icon 3 -->
+    <div class="button3">
+      <ion-buttons start>
+        <button ion-button icon-only (click)="goToSlideThree()">
+          <ion-icon class="iconActive" color="active" name="ios-chatboxes" *ngIf="this.slides.getActiveIndex()===2"></ion-icon>
+          <ion-icon class="iconInactive" name="ios-chatboxes" color="inactive" *ngIf="this.slides.getActiveIndex()!==2"></ion-icon>
+        </button>
+      </ion-buttons>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="content">
+  <ion-row>
+    <ion-col text-wrap>
+      
+      <!----------------- SLIDE 1 -------------------->
+      <ion-slides (ionSlideDidChange)="slideChanged()">
+        <ion-slide>
+          <ion-scroll scrollY="true" class="scroll1">
+            <div class="tamere" *ngIf="!this.showPhoto">
+              <ion-item no-lines>
+                <p class="descriptionText">{{ request.description }}</p> 
+              </ion-item>
+            </div>
+            <ion-scroll scrollY="true" class="scroll1" *ngIf="this.showPhoto">
+              <ion-item no-lines class="photoContainer">
+                <img src="{{request.photo}}" class="photo" (click)="zoomImage()"  *ngIf="this.showPhoto && this.request.photo"> 
+                <img src="{{request.photo2}}" class="photo" (click)="zoomImage2()"  *ngIf="this.showPhoto && this.request.photo2">
+                <img src="{{request.photo3}}" class="photo" (click)="zoomImage3()" *ngIf="this.showPhoto && this.request.photo3">
+              </ion-item>
+            </ion-scroll>
+          </ion-scroll>
+        </ion-slide>
+        
+        <!----------------- SLIDE 2 -------------------->
+        <ion-slide>
+          <ion-scroll scrollY="true" class="scroll2">
+            <div class="tamere2">
+              <ion-item *ngFor="let offer of offerList$" navPush="UserProfilePage" [navParams]="{uidProfile: this.offer.uidProfile}">
+                <div item-start>
+                  <img src="{{offer.userOffer.avatar}}" class="avatar">
+                </div>
+                <h2 class="h2">{{offer.userOffer.firstName}} {{offer.userOffer.lastName.slice(0,1)}}.</h2>
+                <p class="offerComment">{{offer.comment}}</p> 
+                <ion-note item-right color="orangé">{{offer.price}} €</ion-note> 
+              </ion-item>
+            </div>
+          </ion-scroll>
+        </ion-slide>
+        
+        <!----------------- SLIDE 3 -------------------->
+        <ion-slide>
+          <div class="tamere3" style="overflow: scroll; height: xyz;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+            <div class="message-wrap">
+              <div *ngFor="let comment of commentList$"
+              class="message"
+              [class.left]=" comment.uidProfile !== request.uidProfile "
+              [class.right]=" comment.uidProfile === request.uidProfile  ">
+              <img class="user-img" [src]="comment.userComment.avatar" navPush="UserProfilePage" [navParams]="{uidProfile: this.comment.uidProfile}"> 
+              <div class="msg-detail">
+                <div class="msg-info">
+                  <p>{{comment.userComment.firstName}}&nbsp;&nbsp;&nbsp;</p>
+                </div>
+                <div class="msg-content">
+                  <span class="triangle"></span>
+                  <p class="line-breaker" navPush="UserProfilePage" [navParams]="{uidProfile: this.comment.uidProfile}">{{comment.comment}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> 
+      </ion-slide>
+      
+    </ion-slides>
+  </ion-col>
+</ion-row>
+</ion-content>
+
+<!---------------------------------- FOOTER  SLIDE 1 ------------------------------------------>
+<ion-footer *ngIf="this.slides.getActiveIndex()===0" class="footer1">
+  <div class="align-center"> 
+    <div>
+      <!-- Bouton faite votre offre -->
+      <button ion-button color="bleu" class="offer" *ngIf="userProfile && this.userProfile.jobberStatut === true" (click)="goToSlideTwo()" (click)="hidePhoto()"> 
+        FAITES VOTRE OFFRE
+      </button>
+      <button ion-button color="bleu" class="offer" *ngIf="userProfile && this.userProfile.jobberStatut === false" (click)="goToSlideTwo()" (click)="hidePhoto()"> 
+        FAITES VOTRE OFFRE 
+      </button>
+    </div>
+    <!-- Bouton retour -->
+    <button ion-button color="danger" class="back" (click)="back()">
+      <ion-icon name="ios-arrow-back"></ion-icon>
+    </button>
+    <!-- Bouton photo -->
+    <button ion-button color="orangé" *ngIf="!this.showPhoto" (click)="toggleShowPhoto()" class="buttonPhoto"> 
+      <ion-icon name="ios-image" class="iconImage"></ion-icon>
+      PHOTO<p *ngIf="this.pluralPhoto === true" class="s">S</p> ({{this.photoNumber}})
+    </button>
+    <button ion-button color="orangé" *ngIf="this.showPhoto" (click)="toggleShowPhoto()" class="buttonPhoto"> 
+      <ion-icon name="ios-paper" class="iconImage"></ion-icon>
+      TEXTE
+    </button>
+  </div>
+</ion-footer>
+
+<!---------------------------------- FOOTER SLIDE 2 ------------------------------------------>
+<ion-footer *ngIf="this.slides.getActiveIndex()===1" class="footer1">
+  <div class="align-center">
+    <button ion-button color="danger" class="back" (click)="back()">
+      <ion-icon name="ios-arrow-back"></ion-icon>
+    </button>
+    <button ion-button color="bleu" class="offerButton" *ngIf="userProfile && this.userProfile.jobberStatut === true && !this.offerAlreadyPost" navPush="OfferPage" [navParams]="{request: request}"> 
+      FAITES VOTRE OFFRE
+    </button>
+    <button ion-button color="bleu" class="offerButton" *ngIf="userProfile && this.userProfile.jobberStatut === false" (click)="alertStatut()"> 
+      FAITES VOTRE OFFRE 
+    </button>
+    <button ion-button color="bleu" class="offerButton" *ngIf="userProfile && this.userProfile.jobberStatut === true && this.offerAlreadyPost" (click)="alertOfferAlreadyPost()"> 
+      FAITES VOTRE OFFRE 
+    </button>
+  </div>
+</ion-footer>
+
+<!---------------------------------- FOOTER SLIDE 3 (1) ------------------------------------------>
+<ion-footer no-border *ngIf="this.slides.getActiveIndex()===2 && !this.showResponseInput" [style.height]="showEmojiPicker ? '255px' : '55px'">
+  <ion-grid class="input-wrap" id="footer2">
+    <ion-row>
+      <ion-col col-2>
+        <button ion-button clear icon-only item-right (click)="switchEmojiPicker()">
+          <ion-icon name="md-happy"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-8>
+        <ion-textarea #chat_input
+        *ngIf="request.uidProfile != userProfile.uid"
+        placeholder="Posez une question à {{request.userRequest.firstName}}"
+        [(ngModel)]="comment.comment"
+        (keyup.enter)="addComment(comment)"
+        (ionFocus)="onFocus()">
+      </ion-textarea>
+      <ion-textarea #chat_input
+      *ngIf="request.uidProfile === userProfile.uid"
+      placeholder="Répondre"  
+      [(ngModel)]="comment.comment"
+      (keyup.enter)="addComment(comment)"
+      (ionFocus)="onFocus()">
+    </ion-textarea>
+  </ion-col>
+  <ion-col col-2>
+    <button ion-button clear icon-only item-right (click)="addComment(comment)">
+      <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon>
+    </button>
+  </ion-col>
+</ion-row>
+</ion-grid>
+<emoji-picker *ngIf="showEmojiPicker" [(ngModel)]="comment.comment"></emoji-picker>
+</ion-footer>
+
+<!---------------------------------- FOOTER SLIDE 3 (2) ------------------------------------------>
+<ion-footer no-border *ngIf="this.slides.getActiveIndex()===2 && this.showResponseInput" [style.height]="showEmojiPicker ? '255px' : '55px'">
+  <ion-grid class="input-wrap" id="footer2">
+    <ion-row>
+      <ion-col col-2>
+        <button ion-button clear icon-only item-right (click)="switchEmojiPicker()">
+          <ion-icon name="md-happy"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-8>
+        <ion-textarea #chat_input
+        placeholder="Répondre à {{request.userRequest.firstName}}"
+        [(ngModel)]="response.comment"
+        (keyup.enter)="addResponse(response)"
+        (ionFocus)="onFocus()">
+      </ion-textarea>
+    </ion-col>
+    <ion-col col-2>
+      <button ion-button clear icon-only item-right (click)="addResponse(response)">
+        <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+<emoji-picker *ngIf="showEmojiPicker" [(ngModel)]="response.comment"></emoji-picker>
+</ion-footer>

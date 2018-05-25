@@ -1,0 +1,71 @@
+page-offer {
+
+   // ***************** Header **************** //
+   .header {
+    // background-color: rgb(194, 194, 194);
+    background-color: color($colors, orangé, base);
+    color: color($colors, light, base);
+  }
+  
+  // -------- Gauche ----------//
+  .col1 {
+    text-align: left;
+  }
+  
+  h4 {
+    font-size: 16px;
+  }
+  
+  .info {
+    font-size: 11px;
+  }
+  
+  // -------- Droite ----------//
+  .col2 {
+    text-align: right;
+  }
+  
+  .userContent {
+    padding-top: 15%;
+    text-align: center;
+  }
+  
+  .profilePic {
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+  }
+  
+  .name {
+    font-size: 13px;
+  }
+
+  // ***************** Content **************** //
+
+  .content {
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+
+    padding-top: 30%;
+    padding-bottom: 30%;
+
+  }
+
+	
+	textarea {
+		max-width: 100%;
+		width: 100%;
+		height: 100px;
+		font-size: 12px;
+	}
+
+  .align-center {
+    text-align: center;
+  }
+
+  .offer {
+    width:  240px;
+  }
+  
+}
