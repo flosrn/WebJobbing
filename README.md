@@ -1,6 +1,6 @@
 # WebJobbing
 
-Application mobile hybride codé avec **Angular 5** et **Ionic 3**
+Application mobile hybride codé avec **Angular 5** et **Ionic 3** et **Firebase**
 
 #### Fonctionnalités de WebJobbing :
 - S'authentifier, s'inscrire et se déconnecter
